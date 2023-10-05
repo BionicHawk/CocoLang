@@ -119,7 +119,8 @@ public:
 
 		NumberNode left = factor();
 
-		while (currentToken.type == PLUS || currentToken.type == MINUS) {
+		while (currentToken.type == PLUS || currentToken.type == MINUS || 
+			currentToken.type == MULT || currentToken.type == DIV) {
 
 			Token operator_token = currentToken;
 			advance();
