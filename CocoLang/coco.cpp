@@ -2,6 +2,7 @@
 #include "legacy.h"
 #include <string>
 #include <vector>
+#include "Arithmetics.h"
 
 void print_tokens(std::vector<Token>* tokens) {
 	for (auto token : *tokens) {
@@ -35,11 +36,15 @@ int main() {
 		std::string response = "";
 		std::cout << ">> ";
 		std::getline(std::cin, response);
-		std::cout << "\n";
 
 		std::vector<Token> tokens =  run(&response);
 
-		print_tokens(&tokens);
+		if (!tokens.empty()) {
+			Parser parser = Parser(&tokens);
+			BinOperationNode response = parser.parse();
+			std::string result = Operate::Eval(&response);
+			std::cout << result << "\n";
+		}
 
 	}
 
